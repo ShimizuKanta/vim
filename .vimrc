@@ -11,16 +11,22 @@ set autoread
 set showmatch
 syntax on
 set cursorline
-set hlsearch
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+" color
+"hi Comment ctermfg=gray
+"autocmd VimEnter,ColorScheme * highlight Comment ctermfg=gray
+"colorscheme molokai
+"highlight Normal ctermbg=none
+"highlight NonText ctermbg=none
+"highlight LineNr ctermbg=none
+"highlight Folded ctermbg=none
+"highlight EndOfBuffer ctermbg=none 
 
 " serch
+set hlsearch
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
 set ignorecase
-
-" optional (Not important)
-set pumheight=10
-set matchtime=1
-set history=100
+set smartcase
 
 " tab & indent
 set smartindent
@@ -35,6 +41,13 @@ hi SpecialKey ctermfg=darkmagenta
 set list listchars=tab:\|- 
 "set list listchars=tab:\|\  
 "set list!
+
+" other settings
+set pumheight=10
+set matchtime=1
+set history=100
+set virtualedit=block
+
 
 """""""""""""""""""""""""""""""""""
 " key map
