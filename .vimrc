@@ -41,6 +41,10 @@ set matchpairs& matchpairs+=<:>
 set virtualedit=block
 set gdefault
 set whichwrap=b,s,h,l,<,>,[,],~
+"set tags=./.tags;$HOME
+set tags=./tags;$HOME
+"  for Mac
+set vb t_vb=
 
 " visual setting
 set title
@@ -49,6 +53,9 @@ set showmatch
 syntax on
 set cursorline
 set scrolloff=5
+"set nowrap
+set splitbelow
+set splitright
 "set cmdheight=2
 " status line setting
 "set ruler
@@ -65,7 +72,7 @@ set statusline+=%m
 set statusline+=%r
 set statusline+=%h
 set statusline+=%w
-set statusline+=\ CWD:%r%{getcwd()}%h
+"set statusline+=\ CWD:%r%{getcwd()}%h
 set statusline+=%=
 set statusline+=[Line=%l/%L]
 set statusline+=[Column=%c]
@@ -78,10 +85,13 @@ set statusline+=[encode=%{&fileencoding}]
 " comment line
 hi Comment ctermfg=gray
 " status line
-hi StatusLine ctermbg=0 ctermfg=70
+hi StatusLine ctermbg=0 ctermfg=71
 " line number 
 hi LineNr ctermbg=236 ctermfg=122
-" FIXME
+" tab line (current, other, margin)
+hi TabLineSel ctermbg=28 ctermfg=255
+hi TabLine ctermbg=0 ctermfg=70
+hi TabLineFill ctermfg=0
 "autocmd VimEnter,ColorScheme * highlight Comment ctermfg=gray
 "autocmd WinEnter,BufRead,BufNew,Syntax,ColorScheme * :silent! call matchadd('Todo', '\(TODO\|FIXME\|NOTE\|INFO\|XXX\|TEMP\):')
 "autocmd VimEnter,ColorScheme * highlight Todo guibg=Yellow guifg=Black
@@ -113,6 +123,7 @@ else
   noremap sx k$ x<esc>
 endif
 " switch window
+nnoremap sw <C-w>w
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
@@ -121,19 +132,41 @@ nnoremap s<Down> <C-w>j
 nnoremap s<Up> <C-w>k
 nnoremap s<Right> <C-w>l
 nnoremap s<Left> <C-w>h
-nnoremap s> <C-w>>
-nnoremap s< <C-w><
-nnoremap s+ <C-w>+
-nnoremap s- <C-w>-
+nnoremap s> 10<C-w>>
+nnoremap s< 10<C-w><
+nnoremap s+ 10<C-w>+
+nnoremap s- 10<C-w>-
 " tab
-nnoremap st :<C-u>tabe .<CR>
+nnoremap sn :<C-u>tabe .<CR>
+" for ctags
+"nnoremap <C-j> <C-]>
+nnoremap st :vs<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap sT :sp<CR> :exe("tjump ".expand('<cword>'))<CR>
+
+" deactive obs key
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
 
 " other keys
 nnoremap Y y$
 inoremap <silent> jj <ESC>
+nnoremap <CR> A<CR><ESC>
 "nnoremap <BS> i<BS><esc>l
 nnoremap <BS> X
+"inoremap <S-BS> <C-w> FIXME
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
-nnoremap ZZ <Nop>
+" highlight a word under the cursor
+"nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
+nnoremap <silent> <Space><Space> *N
+" without yank
+"nnoremap x "_x
+"nnoremap s "_s
+
+" move cursor
+noremap <S-h>   ^
+noremap <S-j>   }
+noremap <S-k>   {
+noremap <S-l>   $
+
 
