@@ -33,6 +33,12 @@ set list listchars=tab:\|-
 "set list listchars=tab:\|\  
 "set list!
 
+" filer netrw.vim
+let g:netrw_liststyle = 3
+let g:netrw_altv = 1
+let g:netrw_alto = 1
+let g:netrw_winsize = 80
+
 " other settings
 set history=300
 set pumheight=10
@@ -43,7 +49,7 @@ set gdefault
 set whichwrap=b,s,h,l,<,>,[,],~
 "set tags=./.tags;$HOME
 set tags=./tags;$HOME
-"  for Mac
+" for Mac
 set vb t_vb=
 
 " visual setting
@@ -86,8 +92,10 @@ set statusline+=[encode=%{&fileencoding}]
 hi Comment ctermfg=gray
 " status line
 hi StatusLine ctermbg=0 ctermfg=71
+hi StatusLineNC ctermbg=0 ctermfg=gray
 " line number 
 hi LineNr ctermbg=236 ctermfg=122
+hi CursorLineNr ctermbg=71 ctermfg=0
 " tab line (current, other, margin)
 hi TabLineSel ctermbg=28 ctermfg=255
 hi TabLine ctermbg=0 ctermfg=70
@@ -136,6 +144,25 @@ nnoremap s> 10<C-w>>
 nnoremap s< 10<C-w><
 nnoremap s+ 10<C-w>+
 nnoremap s- 10<C-w>-
+" for netrw
+function! NetrwMapping_sh(islocal) abort
+  return "normal! \<C-w>h"
+endfunction
+function! NetrwMapping_sj(islocal) abort
+  return "normal! \<C-w>j"
+endfunction
+function! NetrwMapping_sk(islocal) abort
+  return "normal! \<C-w>k"
+endfunction
+function! NetrwMapping_sl(islocal) abort
+  return "normal! \<C-w>l"
+endfunction
+let g:Netrw_UserMaps = [
+    \   ['sh', 'NetrwMapping_sh'],
+    \   ['sj', 'NetrwMapping_sj'],
+    \   ['sk', 'NetrwMapping_sk'],
+    \   ['sl', 'NetrwMapping_sl'],
+    \ ]
 " tab
 nnoremap sn :<C-u>tabe .<CR>
 " for ctags
