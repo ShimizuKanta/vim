@@ -130,6 +130,7 @@ else
   noremap sa k$ i#<esc>
   noremap sx k$ x<esc>
 endif
+noremap s# k$ i#=================================================<CR><esc>
 " switch window
 nnoremap sw <C-w>w
 nnoremap sj <C-w>j
@@ -180,7 +181,7 @@ inoremap <silent> jj <ESC>
 nnoremap <CR> A<CR><ESC>
 "nnoremap <BS> i<BS><esc>l
 nnoremap <BS> X
-"inoremap <S-BS> <C-w> FIXME
+"inoremap <S-BS> <C-w> TODO 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 " highlight a word under the cursor
