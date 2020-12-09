@@ -11,6 +11,12 @@ set nobackup
 set noswapfile
 set autoread
 
+" save undo list
+if has("persistent_undo")
+  set undodir=~/.vim/.undodir
+  set undofile
+endif
+
 " serch
 set hlsearch
 "nmap <Esc><Esc> :nohlsearch<CR><Esc>
@@ -84,6 +90,8 @@ set statusline+=[Line=%l/%L]
 set statusline+=[Column=%c]
 set statusline+=[encode=%{&fileencoding}]
 
+" remove Thanks for flying Vim
+set notitle
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " color setting
@@ -110,7 +118,13 @@ hi TabLineFill ctermfg=0
 "autocmd VimEnter,ColorScheme * highlight CursorLineNr ctermbg=NONE
 "colorscheme molokai
 "highlight Normal,NonText,LineNr,Folded,EndOfBuffer ctermbg=none
-
+" if opening readonly file, change color to notice.
+"function CheckReadonly()
+"  if &readonly
+"    colorscheme molokai
+"  endif
+"endfunction
+"au BufReadPost * CheckReadonly()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " key mapping
@@ -196,5 +210,4 @@ noremap <S-h>   ^
 noremap <S-j>   }
 noremap <S-k>   {
 noremap <S-l>   $
-
 
